@@ -59,22 +59,27 @@ namespace BlockMonitor
                         //指定发送方式 
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         //指定登录名和密码 
-                        smtp.Credentials = new NetworkCredential("邮箱用户名", "邮箱密码");
+                        var config = JObject.Parse(File.ReadAllText("config.json"));
+                        smtp.Credentials = new NetworkCredential(
+                            config["email"]["username"].ToString(),
+                            config["email"]["password"].ToString());
 
                         try
                         {
                             smtp.Send(mail);
                         }
-                        catch (SmtpException)
+                        catch (SmtpException e)
                         {
+                            Console.WriteLine("Error Tools 073: " + e.Message);
                             if (times <= 3)
                                 SendMail(to, from, subject, body, ++times);
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Error Tools 082: " + e.Message);
             }
         }
 
@@ -95,9 +100,10 @@ namespace BlockMonitor
 
         public static void SendMail(string msg, string subject)
         {
-            foreach (var item in File.ReadAllLines("contact.txt"))
+            var config = JObject.Parse(File.ReadAllText("config.json"));
+            foreach (var item in config["contact"])
             {
-                Tools.SendMail(item, "BlockMonitor", subject, msg);
+                Tools.SendMail(item.ToString(), "BlockMonitor", subject, msg);
             }
         }
     }

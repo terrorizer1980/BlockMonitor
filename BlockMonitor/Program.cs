@@ -24,9 +24,11 @@ namespace BlockMonitor
         private static void T_Elapsed(object sender, ElapsedEventArgs e)
         {
             Status.HeightList.Clear();
-            foreach (var item in File.ReadAllLines("nodes.txt"))
+            var config = JObject.Parse(File.ReadAllText("config.json"));
+
+            foreach (var item in config["nodes"])
             {
-                var h = Tools.GetBlockCount(item);
+                var h = Tools.GetBlockCount(item.ToString());
                 Console.WriteLine($"{item}\t{h}");
                 Status.HeightList.Add(h);
             }
@@ -45,7 +47,7 @@ namespace BlockMonitor
 
                 var timeSpan = Math.Round((DateTime.Now - Status.Time).TotalSeconds / (height - Status.BlockCount), 1);
 
-                if (timeSpan > 30 && timeSpan < 300)
+                if (timeSpan >= 35 && timeSpan < 300)
                 {
                     var msg = $"NEO出块变慢，最近5分钟平均出块时间为{timeSpan}秒。<br />PS：异常区间：{Status.BlockCount}~{height}。";
                     Console.WriteLine($"{msg}, { DateTime.Now.ToString()}");
@@ -55,7 +57,7 @@ namespace BlockMonitor
                 }
                 else
                 {
-                    Console.WriteLine($"出块正常 {height}, {DateTime.Now.ToString()}");
+                    Console.WriteLine($"出块正常，平均出块时间{timeSpan}秒 {height}, {DateTime.Now.ToString()}");
                     Status.BlockCount = height;
                     Status.Time = DateTime.Now;
                 }
