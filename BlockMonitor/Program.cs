@@ -41,8 +41,11 @@ namespace BlockMonitor
                     var msg = $"NEO停止出块，超过{Math.Round((DateTime.Now - Status.Time).TotalMinutes)}分钟未出块";
                     Console.WriteLine($"{msg}, { DateTime.Now.ToString()}");
                     Tools.SendMail(msg, "NEO停止出块❗❗❗");
-                    return;
-
+                    foreach (var item in config["Call"])
+                    {
+                        Tools.CallErik(item.ToString());
+                        return;
+                    } 
                 }
 
                 var timeSpan = Math.Round((DateTime.Now - Status.Time).TotalSeconds / (height - Status.BlockCount), 1);
