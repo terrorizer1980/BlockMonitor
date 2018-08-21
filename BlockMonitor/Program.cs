@@ -25,7 +25,7 @@ namespace BlockMonitor
         {
             Status.HeightList.Clear();
             var config = JObject.Parse(File.ReadAllText("config.json"));
-
+            
             foreach (var item in config["nodes"])
             {
                 var h = Tools.GetBlockCount(item.ToString());
