@@ -41,10 +41,7 @@ namespace BlockMonitor
                     var msg = $"NEO停止出块，超过{Math.Round((DateTime.Now - Status.Time).TotalMinutes)}分钟未出块";
                     Console.WriteLine($"{msg}, { DateTime.Now.ToString()}");
                     Tools.SendMail(msg, "NEO停止出块❗❗❗");
-                    foreach (var item in config["call"])
-                    {
-                        Tools.CallErik(item.ToString());                     
-                    }
+                    Tools.Call();
                     return;
                 }
 
@@ -53,7 +50,7 @@ namespace BlockMonitor
                 if (timeSpan >= 35 && timeSpan < 300)
                 {
                     var msg = $"NEO出块变慢，最近5分钟平均出块时间为{timeSpan}秒。<br />PS：异常区间：{Status.BlockCount}~{height}。";
-                    Console.WriteLine($"{msg}, { DateTime.Now.ToString()}");
+                    Console.WriteLine($"{msg.Replace("<br />", "\n")}, { DateTime.Now.ToString()}");
                     Tools.SendMail(msg, "NEO出块变慢❗");
                     Status.BlockCount = height;
                     Status.Time = DateTime.Now;

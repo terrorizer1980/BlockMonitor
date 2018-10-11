@@ -98,7 +98,17 @@ namespace BlockMonitor
             }
         }
 
-        public static void CallErik(string call)
+        public static void Call()
+        {
+            var config = JObject.Parse(File.ReadAllText("config.json"));
+            var callList = config["call"];
+            foreach (string item in callList)
+            {
+                Tools.CallAdmin(item);
+            }
+        }
+
+        private static void CallAdmin(string call)
         {
             var config = JObject.Parse(File.ReadAllText("config.json"));
             var accountSid = config["yuntongxun"]["ACCOUNT SID"].ToString();

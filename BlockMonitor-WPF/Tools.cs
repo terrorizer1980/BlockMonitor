@@ -106,11 +106,11 @@ namespace BlockMonitor
             var callList = config["call"];
             foreach (string item in callList)
             {
-                Tools.CallErik(item);
+                Tools.CallAdmin(item);
             }
         }
 
-        public static void CallErik(string call)
+        private static void CallAdmin(string call)
         {
             var config = JObject.Parse(File.ReadAllText("config.json"));
             var accountSid = config["yuntongxun"]["ACCOUNT SID"].ToString();
