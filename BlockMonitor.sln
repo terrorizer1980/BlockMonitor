@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockMonitor", "BlockMonitor-WPF\BlockMonitor.csproj", "{48C1D200-B500-4EFE-B3C6-8DCF9AF9ECF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockMonitor-WPF", "BlockMonitor-WPF\BlockMonitor-WPF.csproj", "{48C1D200-B500-4EFE-B3C6-8DCF9AF9ECF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockMonitorConsole", "BlockMonitor\BlockMonitorConsole.csproj", "{6171F521-5DC2-4610-AEF3-B426244FC2FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockMonitor", "BlockMonitor\BlockMonitor.csproj", "{47CED049-21DB-427F-964F-1BACDAC67391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{48C1D200-B500-4EFE-B3C6-8DCF9AF9ECF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48C1D200-B500-4EFE-B3C6-8DCF9AF9ECF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48C1D200-B500-4EFE-B3C6-8DCF9AF9ECF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6171F521-5DC2-4610-AEF3-B426244FC2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6171F521-5DC2-4610-AEF3-B426244FC2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6171F521-5DC2-4610-AEF3-B426244FC2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6171F521-5DC2-4610-AEF3-B426244FC2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CED049-21DB-427F-964F-1BACDAC67391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CED049-21DB-427F-964F-1BACDAC67391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CED049-21DB-427F-964F-1BACDAC67391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CED049-21DB-427F-964F-1BACDAC67391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
