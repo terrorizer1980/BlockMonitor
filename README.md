@@ -15,7 +15,7 @@ NEO 区块监控程序
 
 在 config.josn 文件中配置邮件账号密码、语音呼叫的账号、呼叫列表、邮件列表等信息
 
-```json
+```
 {
     "nodes":[
         "https://seed1.neo.org:10331",
@@ -59,7 +59,7 @@ Configuration file:
 
 Configure e-mail account password, voice call account number, call list, mailing list, etc. in the config.josn file.
 
-```json
+```
 {
     "nodes":[
         "https://seed1.neo.org:10331",
