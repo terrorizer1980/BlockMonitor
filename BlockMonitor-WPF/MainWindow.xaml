@@ -17,6 +17,6 @@
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Name="StartMenu" Header="Start" Click="Start_Click"></MenuItem>
         </Menu>
-        <TextBox Name="TextBox1" Grid.Row="1" Grid.Column="0"></TextBox>
+        <TextBox Name="TextBox1" Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto"></TextBox>
     </Grid>
 </Window>

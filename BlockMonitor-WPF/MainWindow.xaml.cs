@@ -24,6 +24,9 @@ namespace BlockMonitor
 
         private void Monitor(object sender, ElapsedEventArgs e)
         {
+            Dispatcher.BeginInvoke(new Action(() => {
+                TextBox1.Clear();
+            }));
             GetNodesBlockCount();
             AnalyseResults();
         }
@@ -50,22 +53,24 @@ namespace BlockMonitor
 
         private void ConsensusSlow(double averageTime, int height)
         {
-            var msg = $"NEO出块变慢，最近5分钟平均出块时间为{averageTime}秒。<br />PS：异常区间：{Status.BlockCount}~{height}。";
+            var msg = $"NEO出块变慢，最近5分钟平均出块时间为{averageTime}秒。<br />PS：异常区间：{Status.BlockCount}~{height}。<br /><br />" +
+                $"NEO block generation is slow, the average block generation time for the last 5 minutes is {averageTime} seconds. <br />PS: Exception interval: {Status.BlockCount}~{height}.";
             Dispatcher.BeginInvoke(new Action(() => {
                 TextBox1.WriteLine($"{msg}, { DateTime.Now.ToString()}");
             }));
-            Tools.SendMail(msg, "NEO出块变慢❗");
+            Tools.SendMail(msg, "⚠NEO出块变慢 NEO block generation is slow");
             Status.BlockCount = height;
             Status.Time = DateTime.Now;
         }
 
         private void ConsensusStoped(int block)
         {
-            var msg = $"NEO停止出块，超过{Math.Round((DateTime.Now - Status.Time).TotalMinutes)}分钟未出块";
+            var msg = $"NEO停止出块，超过{Math.Round((DateTime.Now - Status.Time).TotalMinutes)}分钟未出块<br /><br />" +
+                $"NEO has stopped generating blocks for more than {Math.Round((DateTime.Now - Status.Time).TotalMinutes)} minutes.";
             Dispatcher.BeginInvoke(new Action(() => {
                 TextBox1.WriteLine($"{msg}, { DateTime.Now.ToString()}");
             }));
-            Tools.SendMail(msg, "NEO停止出块❗❗❗");
+            Tools.SendMail(msg, "🆘NEO停止出块 NEO has stopped generating blocks");
             Tools.Call();
         }
 
