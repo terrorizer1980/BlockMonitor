@@ -53,7 +53,8 @@ namespace BlockMonitor
                 using (MailMessage mail = new MailMessage())
                 {
                     //是谁发送的邮件 
-                    mail.From = new MailAddress("chris@neo.org", from);
+                    var config = JObject.Parse(File.ReadAllText("config.json"));
+                    mail.From = new MailAddress(config["email"]["username"].ToString(), from);
                     //发送给谁 
                     mail.To.Add(to);
                     //标题 
@@ -74,7 +75,6 @@ namespace BlockMonitor
                         //指定发送方式 
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         //指定登录名和密码 
-                        var config = JObject.Parse(File.ReadAllText("config.json"));
                         smtp.Credentials = new NetworkCredential(
                             config["email"]["username"].ToString(),
                             config["email"]["password"].ToString());
